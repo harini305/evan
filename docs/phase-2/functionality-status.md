@@ -2,6 +2,7 @@
 
 | Component | Status | Actual behavior |
 |---|---|---|
+| Viewport fitting | Working | Every anchor section exactly matches the available viewport at 1440×900, 1366×768, 768×1024, 390×844 and 320×720; no content overflow remains after animations settle |
 | Single-page navigation | Working | About, Solutions, Work, Clients, Contact, logo and footer links scroll to real homepage anchors; active section updates |
 | Desktop anchor offsets | Working | About/Solutions land at the 84px header offset; Contact lands at the top with the header hidden |
 | Mobile navigation | Working | Native modal drawer opens, locks body scroll, closes after selection and supports Escape |

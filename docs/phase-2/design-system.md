@@ -44,8 +44,8 @@ The original raster logo is retained unchanged. Its exact lettering font could n
 - `--header-h: 84px` desktop, 72px mobile.
 - `--container: 1280px` with fluid gutters from 16px to 48px.
 - Full-width section surfaces with internal content containers.
-- Desktop anchor panels use at least `calc(100svh - var(--header-h))`; mobile uses natural content height.
-- Contact + compact footer fit one viewport on desktop. Media and flex content absorb remaining height rather than leaving blank bands.
+- Every anchor panel fits exactly `calc(100svh - var(--header-h))` on desktop, tablet and mobile; internal grids and media flex to use the available space without clipping.
+- Contact + compact footer fit one viewport on every tested size. Desktop footer is 96px; compact mobile footers are 96–110px.
 - Near-square corners on media; pills only for actions/facts. Angular clipping is used selectively, not as decoration on every block.
 
 ## Interaction states

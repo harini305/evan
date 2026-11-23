@@ -13,9 +13,9 @@ export function prepareEnquiry(values) {
 
 function validate(values) {
   const errors = {};
-  if (values.name.trim().length < 2) errors.name = 'Please enter your name.';
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) errors.email = 'Please enter a valid email address.';
-  if (values.question.trim().length < 10) errors.question = 'Please add a little more detail (at least 10 characters).';
+  if (values.name.trim().length < 2) errors.name = 'Name required.';
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) errors.email = 'Valid email required.';
+  if (values.question.trim().length < 10) errors.question = 'Minimum 10 characters.';
   return errors;
 }
 
@@ -24,7 +24,16 @@ export default function Contact() {
   const [errors, setErrors] = useState({});
   const [prepared, setPrepared] = useState('');
   const [status, setStatus] = useState('');
+  const [desktopDetails, setDesktopDetails] = useState(false);
   const formRef = useRef(null);
+
+  useEffect(() => {
+    const query = window.matchMedia('(min-width: 601px)');
+    const update = () => setDesktopDetails(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
     try {
@@ -49,7 +58,7 @@ export default function Contact() {
 
   const blurField = (event) => {
     const { name } = event.target;
-    const fieldErrors = validate({ ...emptyForm, ...values });
+    const fieldErrors = validate(values);
     if (fieldErrors[name]) setErrors((current) => ({ ...current, [name]: fieldErrors[name] }));
   };
 
@@ -66,9 +75,9 @@ export default function Contact() {
     setPrepared(href);
     try {
       window.localStorage.setItem('evam-enquiry-draft', JSON.stringify(values));
-      setStatus('Your enquiry is ready and saved in this browser. Open your email app to review and send it. Nothing has been sent by this website.');
+      setStatus('Draft saved in this browser. Nothing was sent here.');
     } catch {
-      setStatus('Your enquiry is ready. Open your email app to review and send it. This browser could not save the draft, and nothing has been sent by this website.');
+      setStatus('Draft ready, but this browser could not save it. Nothing was sent here.');
     }
   };
 
@@ -77,29 +86,39 @@ export default function Contact() {
       <div className="container contact-grid">
         <div className="contact-details" data-reveal>
           <h2 id="contact-title">Let’s make something worth talking about.</h2>
-          <div className="contact-address">
-            <h3>{contact.business}</h3>
-            <p>{contact.address}</p>
-            <a className="text-link" href={contact.directions} target="_blank" rel="noreferrer">Get directions</a>
-          </div>
-          <div className="contact-groups">
-            <div>
+          <details className="contact-disclosure" open={desktopDetails}>
+            <summary>Address & directions</summary>
+            <div className="contact-disclosure-content contact-address">
+              <h3>{contact.business}</h3>
+              <p>{contact.address}</p>
+              <a className="text-link" href={contact.directions} target="_blank" rel="noreferrer">Get directions</a>
+            </div>
+          </details>
+          <details className="contact-disclosure" open={desktopDetails}>
+            <summary>Comedy & general enquiries</summary>
+            <div className="contact-disclosure-content contact-link-list">
               <h3>Comedy Solutions / General Enquiries</h3>
               {contact.general.map((item) => <a key={item.label} href={item.href}>{item.label}</a>)}
             </div>
-            <div>
+          </details>
+          <details className="contact-disclosure" open={desktopDetails}>
+            <summary>Training & social</summary>
+            <div className="contact-disclosure-content contact-link-list">
               <h3>Training Solutions</h3>
               {contact.training.map((item) => <a key={item.label} href={item.href}>{item.label}</a>)}
+              <p className="whatsapp-pending">WhatsApp action pending confirmation of the correct number.</p>
+              <div className="social-links" aria-label="Social profiles">
+                {contact.social.map((item) => <a key={item.label} href={item.href} target="_blank" rel="noreferrer">{item.label}</a>)}
+              </div>
             </div>
-          </div>
-          <p className="whatsapp-pending">WhatsApp action pending confirmation of the correct number.</p>
-          <div className="social-links" aria-label="Social profiles">
-            {contact.social.map((item) => <a key={item.label} href={item.href} target="_blank" rel="noreferrer">{item.label}</a>)}
+          </details>
+          <div className="contact-visual">
+            <img src="/assets/team-group.webp" alt="The evam team together" width="480" height="390" loading="lazy" />
           </div>
         </div>
         <div className="enquiry-panel" data-reveal>
           <h3>Prepare an enquiry</h3>
-          <p>Complete the fields to prepare an email in your own email app. A draft stays in this browser; this website does not send or receive your information.</p>
+          <p>We prepare an email in your app and save a draft in this browser. Nothing is sent here.</p>
           <form ref={formRef} onSubmit={handleSubmit} noValidate>
             <div className="form-field">
               <label htmlFor="enquiry-name">Name</label>

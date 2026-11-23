@@ -18,4 +18,4 @@
 - Historical tour and production artwork is identified as historical, not upcoming events.
 - The broken Google Maps embed is omitted; the audit-verified full-address directions link is used.
 - No prices, testimonials, FAQs, metrics, upcoming events, guarantees, new awards, or client claims were added.
-- Mobile sections use natural height where content cannot honestly fit one screen. Desktop/tablet contact and footer fit exactly; mobile has no clipping or horizontal overflow.
+- Every section fits exactly one viewport at all tested desktop, tablet and phone sizes. Compact mobile compositions preserve content through a Clients/Awards switch and expandable contact disclosures; no clipping or horizontal overflow remains.

@@ -7,6 +7,7 @@ import { awards, clients } from '@/lib/content';
 
 export default function Credibility() {
   const [active, setActive] = useState(0);
+  const [view, setView] = useState('clients');
   const awardRef = useRef(null);
   const award = awards[active];
 
@@ -22,7 +23,11 @@ export default function Credibility() {
           <h2 id="clients-title">Credibility on stage and on screen.</h2>
           <p>Original awards, festival productions and client relationships from across evam’s work.</p>
         </div>
-        <div className="credibility-grid" data-reveal>
+        <div className="credibility-switch" aria-label="Choose credibility content">
+          <button type="button" className={view === 'clients' ? 'active' : ''} aria-pressed={view === 'clients'} onClick={() => setView('clients')}>Clients</button>
+          <button type="button" className={view === 'awards' ? 'active' : ''} aria-pressed={view === 'awards'} onClick={() => setView('awards')}>Awards</button>
+        </div>
+        <div className={`credibility-grid show-${view}`} data-reveal>
           <div className="award-showcase">
             <div className="award-stage">
               <img ref={awardRef} src={award.image} alt={award.alt} width="960" height="540" loading="lazy" />
