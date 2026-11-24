@@ -1,0 +1,13 @@
+.git/
+.next/
+node_modules/
+docs/
+backups/
+design-backups/
+source-assets/
+original-assets/
+test-results/
+playwright-report/
+*.log
+.env*
+!.env.example

@@ -21,14 +21,14 @@ export const metadata = {
     siteName: 'evam',
     locale: 'en_IN',
     type: 'website',
-    images: [{ url: '/assets/home-vimeo-poster.webp', width: 1280, height: 720, alt: 'A scene from the evam showreel' }],
+    images: [{ url: '/assets/home-vimeo-poster-opt.webp', width: 1280, height: 720, alt: 'A scene from the evam showreel' }],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@Tamasha_eST',
     title: 'evam — Performance arts for brands, teams and audiences',
     description: 'Comedy, video production, event engagement and arts-based behavioural training from evam, Chennai.',
-    images: ['/assets/home-vimeo-poster.webp'],
+    images: ['/assets/home-vimeo-poster-opt.webp'],
   },
 };
 

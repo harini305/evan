@@ -91,7 +91,7 @@ export default function HeroVideo() {
 
   return (
     <div className="hero-media" aria-label="evam showreel">
-      <img className="hero-poster" src="/assets/home-vimeo-poster.webp" alt="Performers in a scene from the evam showreel" width="1280" height="720" fetchPriority="high" />
+      <img className="hero-poster" src="/assets/home-vimeo-poster-opt.webp" alt="Performers in a scene from the evam showreel" width="1280" height="720" fetchPriority="high" />
       {shouldLoad && !error && (
         <iframe ref={iframeRef} className={`hero-iframe ${ready ? 'is-ready' : ''}`} src={videoUrl} title="evam showreel on Vimeo" allow="autoplay; fullscreen; picture-in-picture" allowFullScreen />
       )}

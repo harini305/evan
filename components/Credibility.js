@@ -27,24 +27,26 @@ export default function Credibility() {
           <button type="button" className={view === 'clients' ? 'active' : ''} aria-pressed={view === 'clients'} onClick={() => setView('clients')}>Clients</button>
           <button type="button" className={view === 'awards' ? 'active' : ''} aria-pressed={view === 'awards'} onClick={() => setView('awards')}>Awards</button>
         </div>
-        <div className={`credibility-grid show-${view}`} data-reveal>
-          <div className="award-showcase">
-            <div className="award-stage">
+        <div className={`credibility-layout show-${view}`} data-reveal>
+          <div className="awards-spotlight">
+            <div className="award-main">
               <img ref={awardRef} src={award.image} alt={award.alt} width="960" height="540" loading="lazy" />
             </div>
-            <h3>{award.title}</h3>
-            <div className="award-selectors" aria-label="Select award artwork">
-              {awards.map((item, index) => (
-                <button key={item.image} type="button" className={active === index ? 'active' : ''} aria-pressed={active === index} aria-label={`Show ${item.title}`} onClick={() => setActive(index)}>
-                  <img src={item.image} alt="" width="120" height="68" loading="lazy" />
-                </button>
-              ))}
+            <div className="award-info">
+              <h3>{award.title}</h3>
+              <div className="award-selectors" aria-label="Select award artwork">
+                {awards.map((item, index) => (
+                  <button key={item.image} type="button" className={active === index ? 'active' : ''} aria-pressed={active === index} aria-label={`Show ${item.title}`} onClick={() => setActive(index)}>
+                    <img src={item.image} alt="" width="160" height="90" loading="lazy" />
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-          <div className="client-wall" aria-label="evam clients">
+          <div className="client-grid-new" aria-label="evam clients">
             {clients.map((client) => (
-              <div className="client-logo" key={client.name}>
-                <img src={client.image} alt={client.name} width="220" height="90" loading="lazy" />
+              <div className="client-grid-item" key={client.name}>
+                <img src={client.image} alt={client.name} width="180" height="72" loading="lazy" />
               </div>
             ))}
           </div>

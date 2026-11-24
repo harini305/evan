@@ -2,6 +2,14 @@
 const nextConfig = {
   devIndicators: false,
   images: { unoptimized: true },
+  async headers() {
+    return [
+      {
+        source: '/assets/:path*',
+        headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }],
+      },
+    ];
+  },
   async redirects() {
     return [
       { source: '/about-us', destination: '/#about', permanent: true },

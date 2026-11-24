@@ -54,7 +54,7 @@ export default function Header() {
       <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${atContact && !open ? 'is-hidden' : ''}`}>
         <div className="header-inner">
           <a className="header-logo" href="#home" aria-label="evam home" onClick={() => setActive('home')}>
-            <img src="/assets/logo.webp" alt="evam" width="116" height="58" />
+            <img src="/assets/logo-opt.webp" alt="evam" width="116" height="58" />
           </a>
           <nav className="desktop-nav" aria-label="Main navigation">
             {links.map(([id, label]) => (
@@ -70,7 +70,7 @@ export default function Header() {
       <dialog ref={dialogRef} className="mobile-dialog" aria-label="Navigation menu" onClose={() => setOpen(false)} onClick={(event) => { if (event.target === dialogRef.current) setOpen(false); }}>
         <div className="mobile-drawer">
           <div className="drawer-top">
-            <img src="/assets/logo.webp" alt="evam" width="116" height="58" />
+            <img src="/assets/logo-opt.webp" alt="evam" width="116" height="58" />
             <button className="close-button" type="button" aria-label="Close navigation menu" onClick={() => setOpen(false)}>×</button>
           </div>
           <nav aria-label="Mobile navigation">

@@ -1,7 +1,15 @@
 node_modules/
 .next/
 out/
+.vercel/
 *.log
 .DS_Store
-docs/source-audit/
-docs/phase-2/screenshots/
+.env*
+!.env.example
+docs/
+backups/
+design-backups/
+source-assets/
+original-assets/
+test-results/
+playwright-report/
